@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EmployeeController {
 
     @Autowired
-    @Qualifier("employeeService")
+    @Qualifier("employeeServiceImpl")
     private EmployeeService emplServ;
-
 
     @RequestMapping(value="/emplmodel")
     public String getEmployeeInfo(Model model, @RequestParam(value = "login") String login) {
-
-
+        this.emplServ.setEmPloyee();
         Employee empl = this.emplServ.getEmployeeData(login);
         model.addAttribute("login", empl.getLogin());
         model.addAttribute("fio", empl.getFio());
